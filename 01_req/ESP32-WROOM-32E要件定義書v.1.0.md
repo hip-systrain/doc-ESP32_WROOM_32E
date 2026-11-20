@@ -90,9 +90,10 @@ ESP32-WROOM-32Eを用いたマイコンボード(ESP32-DevKitC V4)は、動作�
 | 要件定義 | 2026年11月19日 | 2026年11月20日 | 2人 | 4人日 |
 | 手順書   | 2026年11月24日 | 2026年12月01日 | 2人 | 12人日 |
 
-#### 図3. ガントチャート
+#### 図3. プロジェクトスケジュール
 ```mermaid
 gantt
+    todayMarker off
     title プロジェクトスケジュール
     dateFormat  YYYY-MM-DD
     axisFormat %m/%d
