@@ -21,8 +21,8 @@
 本書は、ESP32-WROOM-32Eを用いたマイコンボードの開発手順書を作成するための要件定義書である。  
 開発手順書は既存の手順書テンプレートを使用し、開発環境構築からデバッグまでとトラブルシューティングを記載する。  
 参考資料は次の2点を使用する。  
-- ESP32-WROOM-32E 編 手順書づくりの進め方
-- 手順書テンプレートの使い方
+- [ESP32-WROOM-32E 編 手順書づくりの進め方](https://docs.google.com/presentation/d/1GP42-cAqSeLSWWjw3OBF355qW8Jxrs_-VJxGFi3ITQo/edit?usp=drive_link)
+- [手順書テンプレートの使い方](https://docs.google.com/presentation/d/1Bl2NqJz9W8lAkm-M4A8aKznSpVRzpFoKyBHCuVhZBM0/edit?usp=drive_link)
 
 ## 2. 概要
 ESP32-WROOM-32Eを用いたマイコンボードの開発手順書を読めば、だれでも対象のマイコンボードを動かせることを目的としている。    
