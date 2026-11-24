@@ -111,17 +111,292 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ### 4.4 題材4:タイマ割込み
 
 ## 5. コーディング・ビルド・書込み(FreeRTOS)
+FreeRTOSとは、組み込みシステム向けに設計された軽量・オープンソースのRTOS（Real-Time Operating System）である。
+また、RTOSとは、決められた期限内に処理を完了することを保証する組込み向けOSである。
+FreeRTOSを導入することにより、次の利点がある。
+- マルチタスク管理、割り込み処理など、組み込み開発に必要な機能を利用できる
+- 複数の処理（通信、表示更新など）を並列に実行できる
 
 ### 5.1 FreeRTOSの導入・設定
+FreeRTOSは、本手順書の「1.1 ツールのインストール」でインストールしたESP-IDF(Espressif IoT Development Framework)に組み込まれている。
+
+#### 5.1.1 FreeRTOSの導入
+FreeRTOSは本手順書の「1.1 ツールのインストール」で既に導入されている為、対応しない。
+
+#### 5.1.2 FreeRTOSの設定変更
+本研修ではFreeRTOSの設定を変更しない為、対応しない。
+
+本章では、別の機会でFreeRTOSの設定を変更する場合を考慮して、設定方法と設定手順を次に示す。
+##### FreeRTOSの設定方法
+FreeRTOSの設定は、vscode内で表示するプロジェクトの設定画面（menuconfig）で行う。
+（FreeRTOSの設定変更は、既に用意されている機能の有効と無効を決定するのみの為、マウスクリックやEnterキー押下で設定を切り替えることができる。）
+
+##### FreeRTOSの設定手順
+1. vscodeをアクティブにして、「F1」キーを押下する。
+1. vscodeの画面上部で「ESP-IDF:Open Classic Menuconfig Terminal」の項目を押下する。
+1. Windows PowerShellが自動実行される為、自動終了するまで待機する。
+1. プロジェクトの設定画面（menuconfig）が、vscode内に表示されたら、"Compornent Config"を選択する。
+1. プロジェクトの設定画面の表示が更新されたら、"FreeRTOS"を選択する。
+1. FreeRTOSの設定内容が表示される。
+
 ### 5.2 題材5:複数タスク
+#### 5.2.1 作るもの
+本章では、ボード内にある外付けの LED とボタンを用いて、LEDタスクとボタンタスクを動かすプログラムを作成する。
+タスクの作成は、API関数のxTaskCreate()を使用する。
+
+##### xTaskCreate()の概要
+xTaskCreate()で設定する引数の意味を次に示す。
+
+    BaseType_t xTaskCreate(
+      TaskFunction_t pvTaskCode,   // タスクとして実行する関数名
+      const char * const pcName,   // デバッグ用に表示するタスク名
+      const uint32_t usStackDepth, // タスクに割り当てるスタックの大きさ
+      void *pvParameters,          // タスクに渡す引数（不要ならばNULL）
+      UBaseType_t uxPriority,      // タスクの優先度（数値が大きいほど高優先度）
+      TaskHandle_t *pvCreatedTask  // タスクを動かすコアを指定（不要ならばNULL）
+    );
+
+#### 5.2.2 配線
+LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
+ボタンの配線は、本手順書の「4.2 題材2:ボタン入力」を参照する。
+
+#### 5.2.3 プログラム
+複数タスク(LEDタスクとボタンタスク)を用いたプログラムを次に示す。
+
+    #include "freertos/FreeRTOS.h"
+    #include "freertos/task.h"
+    #include "driver/gpio.h"
+    #include "esp_log.h"
+
+    #define LED_GPIO    25  // LEDピン番号
+    #define BUTTON_GPIO 26  // ボタンピン番号
+
+    void led_task(void *);      // LED制御タスク
+    void button_task(void *);   // ボタン監視タスク
+
+    static bool led_on = false; // LED状態管理
+    static const char *TAG = "CORE_INFO";
+
+    void app_main(void)
+    {
+        // LED GPIO設定
+        gpio_config_t io_conf = 
+        {
+            .pin_bit_mask = (1ULL << LED_GPIO),
+            .mode = GPIO_MODE_OUTPUT,
+            .pull_up_en = GPIO_PULLUP_DISABLE,
+            .pull_down_en = GPIO_PULLDOWN_DISABLE,
+            .intr_type = GPIO_INTR_DISABLE
+        };
+        gpio_config(&io_conf);
+
+        // ボタン GPIO設定（入力 + プルアップ）
+        io_conf.pin_bit_mask = (1ULL << BUTTON_GPIO);
+        io_conf.mode = GPIO_MODE_INPUT;
+        io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
+        gpio_config(&io_conf);
+
+        // タスク起動
+        xTaskCreate(led_task, "LED Task", 2048, NULL, 5, 0);
+        xTaskCreate(button_task, "Button Task", 2048, NULL, 5, 0);
+    }
+
+    void led_task(void *pvParameters) 
+    {
+        while (1) 
+        {
+            // GPIOピンの出力レベルを設定(0->Low, 1->High)
+            gpio_set_level(LED_GPIO, led_on ? 1 : 0);
+            // Delay(500ms)
+            vTaskDelay(pdMS_TO_TICKS(500));
+        }
+    }
+
+    void button_task(void *pvParameters) 
+    {
+        while (1) 
+        {
+            // GPIOピンの出力レベルを取得
+            if (gpio_get_level(BUTTON_GPIO) == 0) 
+            { 
+                // 押下検出（押されたらLED状態切り替え）
+                led_on = !led_on;
+                ESP_LOGI("BUTTON", "LED state changed: %d", led_on);
+                // チャタリング（スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象）防止
+                vTaskDelay(pdMS_TO_TICKS(300));
+            }
+            // Delay(50ms)
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+    }
+
+#### 5.2.4 ビルドと書込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.2.5 動作確認
+ビルド成功後、次の確認を行う。
+- マイコンボードのボタンを押すことで、LEDの表示でON/OFFが切り替わることを確認する。
+- マイコンボードのボタンを押し続けることで、LEDの表示が点滅することを確認する。
+- マイコンボードのボタンを押すことで、vscodeのターミナルに次の2点が交互に表示されることを確認する。
+  * BUTTON: LED state changed: 1
+  * BUTTON: LED state changed: 0
+
 ### 5.3 題材6:タスク間通信
+#### 5.3.1 作るもの
+本章では、ボード内にある外付けの LED とボタンを用いて、キューで LED の点滅の速さを切り替えるプログラムを作成する。
+キューとはタスクの間でデータを交換するための仕組みである。
+キューの作成は、API関数のxQueueCreate()関数を使用する。
+また、キューの送信と受信は、API関数のxQueueSend()関数とxQueueReceive()関数を使用する。
+
+##### xQueueCreate()の概要
+xQueueCreate()で設定する引数の意味を次に示す。
+
+    QueueHandle_t xQueueCreate( 
+      UBaseType_t uxQueueLength,  // キューが収容可能なアイテムの最大数
+      UBaseType_t uxItemSize      // キューの各項目が必要とするバイト数
+    );
+
+##### xQueueSend()の概要
+xQueueSend()で設定する引数の意味を次に示す。
+
+    BaseType_t xQueueSend(
+      QueueHandle_t xQueue,       // キューのハンドル
+      const void *pvItemToQueue,  // 送信データのポインタ
+      TickType_t xTicksToWait     // キューが満杯の場合の待ち時間
+    );
+
+##### xQueueReceive()の概要
+xQueueReceive()で設定する引数の意味を次に示す。
+
+    BaseType_t xQueueReceive(
+      QueueHandle_t xQueue,       // キューのハンドル
+      void *pvBuffer,             // 受信データのポインタ
+      TickType_t xTicksToWait     // キューが空の場合の待ち時間
+    );
+
+#### 5.3.2 配線
+LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
+ボタンの配線は、本手順書の「4.2 題材2:ボタン入力」を参照する。
+
+#### 5.3.3 プログラム
+キューを用いたタスク間通信のプログラムを次に示す。
+
+    #include "freertos/FreeRTOS.h"
+    #include "freertos/task.h"
+    #include "freertos/queue.h"
+    #include "driver/gpio.h"
+    #include "esp_log.h"
+
+    #define LED_GPIO    25  // LEDピン番号
+    #define BUTTON_GPIO 26  // ボタンピン番号
+
+    static QueueHandle_t speed_queue;       // キューのハンドル
+    static const char *TAG = "BlinkQueue";  // ログ出力タグ
+
+    void button_task(void *);   // ボタンタスク
+    void led_task(void *);      // LEDタスク
+
+    void app_main(void) 
+    {
+        // LED GPIO設定
+        gpio_config_t io_conf = 
+        {
+            .pin_bit_mask = (1ULL << LED_GPIO),
+            .mode = GPIO_MODE_OUTPUT,
+            .pull_up_en = GPIO_PULLUP_DISABLE,
+            .pull_down_en = GPIO_PULLDOWN_DISABLE,
+            .intr_type = GPIO_INTR_DISABLE
+        };
+        gpio_config(&io_conf);
+
+        // ボタン GPIO設定
+        gpio_config_t btn_conf = 
+        {
+            .pin_bit_mask = (1ULL << BUTTON_GPIO),
+            .mode = GPIO_MODE_INPUT,
+            .pull_up_en = GPIO_PULLUP_ENABLE,
+            .pull_down_en = GPIO_PULLDOWN_DISABLE,
+            .intr_type = GPIO_INTR_DISABLE
+        };
+        gpio_config(&btn_conf);
+
+        // キュー作成
+        speed_queue = xQueueCreate(5, sizeof(int));
+        if (speed_queue == NULL) 
+        {
+            ESP_LOGE(TAG, "Failed to create queue");
+            return;
+        }
+
+        // タスク作成
+        xTaskCreate(button_task, "button_task", 2048, NULL, 5, NULL);
+        xTaskCreate(led_task, "led_task", 2048, NULL, 5, NULL);
+    }
+
+    void button_task(void *pvParameters) 
+    {
+        int speeds[] = {100, 300, 700}; // 点滅周期(ms)
+        int index = 0;                  // 位置情報
+
+        while (1) 
+        {
+            // ボタン押下検知
+            if (gpio_get_level(BUTTON_GPIO) == 0) 
+            {
+                index = (index + 1) % 3;
+                int new_speed = speeds[index];
+                ESP_LOGI(TAG, "Button pressed, new speed: %d ms", new_speed);
+
+                // キューに送信が失敗
+                if (xQueueSend(speed_queue, &new_speed, pdMS_TO_TICKS(100)) != pdTRUE) 
+                {
+                    ESP_LOGW(TAG, "Failed to send speed to queue");
+                }
+                // チャタリング（スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象）防止
+                vTaskDelay(pdMS_TO_TICKS(500));
+            }
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+    }
+
+    void led_task(void *pvParameters) 
+    {
+        int current_speed = 500;    // 初期速度
+        int new_speed;              // キューから取得する速度
+
+        while (1) 
+        {
+            // キューから速度を受信
+            if (xQueueReceive(speed_queue, &new_speed, pdMS_TO_TICKS(10)) == pdTRUE) 
+            {
+                current_speed = new_speed;
+                ESP_LOGI(TAG, "Speed updated to %d ms", current_speed);
+            }
+
+            // LED点滅
+            gpio_set_level(LED_GPIO, 1);
+            vTaskDelay(pdMS_TO_TICKS(current_speed));
+            gpio_set_level(LED_GPIO, 0);
+            vTaskDelay(pdMS_TO_TICKS(current_speed));
+        }
+    }
+
+#### 5.3.4 ビルドと書込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.3.5 動作確認
+ビルド成功後、次の確認を行う。
+- マイコンボードのボタンを押すことで、LEDの点滅表示の速度が切り替わることを確認する。
+- マイコンボードのボタンを押すことで、vscodeのターミナルに速度が更新されたログが表示されることを確認する。
+  例：Speed updated to 300 ms
 
 ## 6. デバッグ
+デバッグ可能な機材がないため保留とする。
 
-### 6.1 デバッガの接続(配線図・写真)
-### 6.2 デバッグの開始
-### 6.3 ブレークポイント・ステップ実行
-### 6.4 変数・メモリ・レジスタの確認
+<!-- ### 6.1 デバッガの接続(配線図・写真) -->
+<!-- ### 6.2 デバッグの開始 -->
+<!-- ### 6.3 ブレークポイント・ステップ実行 -->
+<!-- ### 6.4 変数・メモリ・レジスタの確認 -->
 
 ## 7. トラブルシューティング
 
