@@ -87,8 +87,88 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ## 1. 開発環境構築
 
 ### 1.1 ツールのインストール
+#### VS Code インストール手順
+1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。<br>
+<img src="./images/E1_vscode_download.png" width="300" height="" alt="VSCodeインストーラ_ダウンロード手順"><br>
+
+1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。
+1. 「同意する」にチェックを入れて「次へ」を押下する。<br>
+<img src="./images/E1_vscode_install.png" width="300" height="" alt="VSCode_インストール手順1"><br>
+
+1. インストール先を指定して「次へ」を押下する。<br>
+<img src="./images/E1_vscode_install2.png" width="300" height="" alt="VSCode_インストール手順2"><br>
+
+1. 「次へ」を押下する。<br>
+<img src="./images/E1_vscode_install3.png" width="300" height="" alt="VSCode_インストール手順3"><br>
+
+1. 「次へ」を押下する。<br>
+<img src="./images/E1_vscode_install4.png" width="300" height="" alt="VSCode_インストール手順4"><br>
+
+1. 「次へ」を押下する。<br>
+<img src="./images/E1_vscode_install5.png" width="300" height="" alt="VSCode_インストール手順5"><br>
+
+1. 「インストール」を押下する。<br>
+<img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br>
+
+1. 完了ボタンまで進んだらインストール完了。<br>
+<img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br>
+
+#### ESP-IDF Extension インストール手順
+1. 画像の①からVSCodeの拡張機能を開く。<br>
+1. 画像の②にESP-IDFと入力し検索する。<br>
+1. 画像の③をクリックしてESP-IDFのインストールページを開く。<br>
+<img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br>
+
+1. Installボタンをクリックしてインストールする。<br>
+<img src="./images/E1_ESP-IDFex_install2.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順2"><br>
+
+#### ESP-IDF Installation Maneger ダウンロード手順
+1. Espressifの[公式ダウンロードページ](https://dl.espressif.com/dl/eim/)にアクセスする。<br>
+1. `eim-gui-windows-x64.exe`をダウンロードする。<br>
+<img src="./images/E1_ESP-eim_download.png" width="300" height="" alt="EIM_download手順"><br>
+
+#### ESP-IDF 本体インストール手順
+1. `eim-gui-windows-x64.exe`を実行する
+
+1. Start Installationを押下する。<br>
+<img src="./images/E1_ESP-IDF_install1.png" width="300" height="" alt="Start_Installation"><br>
+
+1. Start Easy Installationを押下する。<br>
+<img src="./images/E1_ESP-IDF_install2.png" width="300" height="" alt="Easy_Installation"><br>
+
+1. インストールするESP-IDFのバージョンを選択する。<br>
+<img src="./images/E1_ESP-IDF_install3.png" width="300" height="" alt="Version_select"><br>
+
+1. 1. Start Installationを押下する。<br>
+<img src="./images/E1_ESP-IDF_install4.png" width="300" height="" alt="Start_Installation2"><br>
+
+1. インストールを待つ。(15分～30分程度)<br>
+<img src="./images/E1_ESP-IDF_install5.png" width="300" height="" alt="Wait_Installation"><br>
+
+1. インストール完了画面が出たことを確認する。<br>
+<img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br>
+
 ### 1.2 ドライバのインストール
+#### CP210x Windows Drivers インストール手順
+1. [ドライバダウンロードページ](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)へアクセスする。<br>
+1. CP210x Windows Driversを押下する。(zipファイルがダウンロードされる)<br>
+<img src="./images/E1_CP210xDrivers_install1.png" width="300" height="" alt="Driver_Installation"><br>
+1. ダウンロードしたzipファイルを任意の場所に解凍する。<br>
+1. `CP210xVCPInstaller_x64`を実行する。<br>
+1. 「次へ」を押下する。<br>
+<img src="./images/E1_CP210xDrivers_install2.png" width="300" height="" alt="Driver_Installation2"><br>
+1. 「同意します」にチェックを入れて「次へ」を押下する。<br>
+<img src="./images/E1_CP210xDrivers_install3.png" width="300" height="" alt="Driver_Installation3"><br>
+1. 完了画面を確認する。<br>
+<img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br>
+
+
 ### 1.3 インストールできたことの確認
+下記2点の確認をもってインストール完了とする。<br>
+- ESP-IDF WelcomeからNew projectを選択して画面上部にESP-IDF v6.1が出ること。<br>
+<img src="./images/E1_check_install_IDF.png" width="500" height="" alt="check_Install"><br>
+- マイコンをPCと接続したときデバイスマネージャーでCOMx(例：COM5)としてポートが表示されること。<br>
+<img src="./images/E1_check_install_Driver.png" width="300" height="" alt="check_Install2"><br>
 
 ## 2. シリアルターミナルの使い方
 
