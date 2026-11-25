@@ -178,9 +178,35 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ### 2.3 動作確認
 
 ## 3. プロジェクト作成
+本章は新規プロジェクトの作成と、プロジェクトの構成について説明する。
 
 ### 3.1 新規プロジェクトの作成
+新規プロジェクトは、次の手順で作成される。
+1. vscodeをアクティブにして、「F1」キーを押下する。
+1. vscodeの画面上部で「ESP-IDF:New Project」の項目を押下する。
+<img src="./images/E1_3.1.png" width="500" height="" alt="setting1"><br><br>
+
+1. vscodeの画面上部で「ESP-IDF:Use ESP-IDF C:\・・・\esp-idf ESP-IDF vx.x.x」の項目を押下する。
+<img src="./images/E1_3.2.png" width="500" height="" alt="setting2"><br><br>
+
+1. 「New Project」タブ内にある”ESP-IDF Templates”を選択し、"sample_project"を2回押下する。
+<img src="./images/E1_3.3.png" width="500" height="" alt="setting3"><br><br>
+
+1. 「New Project」タブ内に表示された「Create project using template sample_project」を押下する。
+<img src="./images/E1_3.4.png" width="500" height="" alt="setting4"><br><br>
+
+1. 「New Project」タブ内で画面が更新されたら、設定内容を確認し、画面下側にある「Create Project」を押下する。
+「Enter Project directory」の項目は任意のパスを設定する。その他の項目はデフォルトで設定する。
+<img src="./images/E1_3.5.png" width="500" height="" alt="setting5"><br><br>
+
+1. 「New Project」タブ内で画面が更新されたら、「Open Project」を押下する。
+<img src="./images/E1_3.6.png" width="500" height="" alt="setting6"><br><br>
+
 ### 3.2 プロジェクトの構成(フォルダ・ファイルの役割)
+プロジェクト構成は次に示す。
+フォルダ：sample_projectで作成されたフォルダである。研修時はフォルダの追加をせずにデフォルトのままにする。
+ファイル：sample_projectで作成されたファイルである。研修時はファイルの追加をせずにmain.cの中に処理を全て記載する。
+<img src="./images/E1_3.8.png" width="500" height="" alt="setting7"><br>
 
 ## 4. コーディング・ビルド・書込み(RTOSなし)
 
@@ -480,10 +506,15 @@ LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
 <!-- ### 6.4 変数・メモリ・レジスタの確認 -->
 
 ## 7. トラブルシューティング
-
+<!-- 次の表は、本手順書内で想定されるトラブルの症状から原因を特定する。そして、対処方法を標準化することにより、業務への影響を最小限に抑える。 -->
+次の表は、本手順書内で作業が手詰まりになった時に確認する。
 | 症状 | 原因 | 対処 |
 |---|---|---|
-| | | |
+| サンプルの hello_world を使用しても、文頭にあるincludeの行が全てエラー表示になる。 | PCとマイコンをUSB接続した状態で初回ビルドをしていない。 | PCとマイコンをUSB接続した状態で初回ビルドする。 |
+| サンプルの hello_world を使用してビルドしても「Hello world!」が表示されない。 | 本手順書で対応漏れの項目がある。 | 本手順書通りに対応し、対応できない項目があれば有識者に確認する。 |
+| ビルド後、エラーメッセージ「No serial ports found.」が表示される | マイコンがPCと接続されていない。または、ポート番号がかみ合っていない。 | デバイスマネージャーを起動し、ポート番号が認証していることを確認する。 |
+| ビルド後、エラーメッセージ「ERROR: A fatal error occurred: Could not open COM3, the port is busy or doesn't exist.」が表示される。 | 一方のvscodeでビルドまたは実行中の時、他方のvscodeでビルドしている。 | ビルドまたは実行時は1ファイルのみにする。 |
+| ビルドは成功したが、LEDが点灯しない、ボタン操作が機能しない。 | プログラムとマイコンでPIN番号が一致していない | PIN番号を一致させる。 |
 
 ## 8. 参考資料
 
