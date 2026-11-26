@@ -100,43 +100,34 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。
 1. 「同意する」にチェックを入れて「次へ」を押下する。<br>
-<img src="./images/E1_vscode_install.png" width="300" height="" alt="VSCode_インストール手順1"><br>
-<br>
+<img src="./images/E1_vscode_install.png" width="300" height="" alt="VSCode_インストール手順1"><br><br>
 
 1. インストール先を指定して「次へ」を押下する。<br>
-<img src="./images/E1_vscode_install2.png" width="300" height="" alt="VSCode_インストール手順2"><br>
-<br>
+<img src="./images/E1_vscode_install2.png" width="300" height="" alt="VSCode_インストール手順2"><br><br>
 
 1. 「次へ」を押下する。<br>
-<img src="./images/E1_vscode_install3.png" width="300" height="" alt="VSCode_インストール手順3"><br>
-<br>
+<img src="./images/E1_vscode_install3.png" width="300" height="" alt="VSCode_インストール手順3"><br><br>
 
 1. 「次へ」を押下する。<br>
-<img src="./images/E1_vscode_install4.png" width="300" height="" alt="VSCode_インストール手順4"><br>
-<br>
+<img src="./images/E1_vscode_install4.png" width="300" height="" alt="VSCode_インストール手順4"><br><br>
 
 1. 「次へ」を押下する。<br>
-<img src="./images/E1_vscode_install5.png" width="300" height="" alt="VSCode_インストール手順5"><br>
-<br>
+<img src="./images/E1_vscode_install5.png" width="300" height="" alt="VSCode_インストール手順5"><br><br>
 
 1. 「インストール」を押下する。<br>
-<img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br>
-<br>
+<img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br><br>
 
-1. 「完了」を押下する。<br>
-<img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br>
-<br>
+> 確認:「完了」の画面が出れば成功<br>
+<img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br><br>
 
 #### ESP-IDF Extension インストール手順
 1. 画像の①からVSCodeの拡張機能を開く。<br>
 1. 画像の②にESP-IDFと入力し検索する。<br>
 1. 画像の③を押下してESP-IDFのインストールページを開く。<br>
-<img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br>
-<br>
+<img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br><br>
 
 1. Installボタンを押下してインストールする。<br>
-<img src="./images/E1_ESP-IDFex_install2.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順2"><br>
-<br>
+<img src="./images/E1_ESP-IDFex_install2.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順2"><br><br>
 
 #### ESP-IDF Installation Maneger ダウンロード手順
 1. Espressifの[公式ダウンロードページ](https://dl.espressif.com/dl/eim/)にアクセスする。<br>
@@ -161,7 +152,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 1. インストールを待つ。(15分～30分程度)<br>
 <img src="./images/E1_ESP-IDF_install5.png" width="300" height="" alt="Wait_Installation"><br><br>
 
-1. インストール完了画面が出たことを確認する。<br>
+> 確認:インストール完了画面が出れば成功<br>
 <img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br><br>
 
 
@@ -180,16 +171,16 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 1. 「同意します」にチェックを入れて「次へ」を押下する。<br>
 <img src="./images/E1_CP210xDrivers_install3.png" width="300" height="" alt="Driver_Installation3"><br><br>
 
-1. 完了画面を確認する。<br>
+> 完了画面が表示されれば成功<br>
 <img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br><br>
 
 
 ### 1.3 インストールできたことの確認
 次の2点の確認をもってインストール完了とする。<br>
-- ESP-IDF WelcomeからNew projectを選択して画面上部にインストールしたバージョンのESP-IDFが出ること。<br>
+> 確認:ESP-IDF WelcomeからNew projectを選択して画面上部にインストールしたバージョンのESP-IDFが出れば成功<br>
 <img src="./images/E1_check_install_IDF.png" width="500" height="" alt="check_Install"><br>
-- マイコンをPCと接続したときデバイスマネージャーでCOMx(例：COM5)としてポートが表示されること。<br>
 
+> 確認:マイコンをPCと接続したときデバイスマネージャーでCOMx(例：COM5)としてポートが表示されれば成功<br>
 <img src="./images/E1_check_install_Driver.png" width="300" height="" alt="check_Install2"><br>
 
 ## 2. シリアルターミナルの使い方
@@ -233,14 +224,14 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 <img src="./images/E1_ESP-IDF_hello5.png" width="300" height="" alt="hello5"><br><br>
 
 1. 画面上部のCOMx Silicon Labsを押下する。<br>
-<img src="./images/E1_ESP-IDF_hello6.png" width="300" height="" alt="hello6"><br><br>
+<img src="./images/E1_ESP-IDF_hello6.png" width="500" height="" alt="hello6"><br><br>
 
 1. 画面下部の炎マーク(Build, Flash and Monitor)を押下する。<br>
 <img src="./images/E1_ESP-IDF_hello7.png" width="300" height="" alt="hello7"><br><br>
 
-1. ビルドと書き込みを待ち、ターミナルに`Hello world!`が出力されることを確認する。<br>
-このとき自動でプログラムがリスタートされ続けるが、期待通りの挙動。<br>
-<img src="./images/E1_ESP-IDF_hello8.png" width="300" height="" alt="hello8"><br><br>
+> 確認:ビルドと書き込みを待ち、ターミナルに`Hello world!`が出力されれば成功<br>
+> 注意:このとき自動でプログラムがリスタートされ続けるが、期待通りの挙動<br>
+<img src="./images/E1_ESP-IDF_hello10.png" width="500" height="" alt="hello10"><br><br>
 
 ## 3. プロジェクト作成
 本章は新規プロジェクトの作成と、プロジェクトの構成について説明する。
@@ -266,6 +257,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 1. 「New Project」タブ内で画面が更新されたら、「Open Project」を押下する。<br>
 <img src="./images/E1_3.6.png" width="500" height="" alt="setting6"><br><br>
+> 確認:プロジェクトが開けば成功
 
 ### 3.2 プロジェクトの構成(フォルダ・ファイルの役割)
 プロジェクト構成は次に示す。<br>
@@ -360,9 +352,9 @@ void app_main(void)
 本手順書の「[2.3 動作確認](#23-動作確認)」と同様の対応をする。
 
 #### 5.2.5 動作確認
-ビルド成功後、次の確認を行う。<br>
-- LEDが点滅することを確認する。<br>
-- ターミナルにLED: LED ONと、 LED: LED OFF が交互に出力されることを確認する。<br>
+> 確認:次の2点が確認できれば成功<br>
+    LEDが点滅することを確認する。<br>
+    ターミナルにLED: LED ONと、 LED: LED OFF が交互に出力されることを確認する。<br>
 
 ### 5.3　題材2:ボタン入力
 #### 5.3.1 作るもの
@@ -460,7 +452,7 @@ void app_main(void)
 #include "driver/gpio.h"
 #include "esp_log.h"
 
-#define BUTTON_GPIO GPIO_NUM_26
+#define BUTTON_GPIO 26
 
 static const char *TAG = "BUTTON";
 
@@ -859,9 +851,9 @@ xQueueReceive()で設定する引数の意味を次に示す。
 |---|---|---|
 | サンプルの hello_world を使用しても、文頭にあるincludeの行が全てエラー表示になる。 | PCとマイコンをUSB接続した状態で初回ビルドをしていない。 | PCとマイコンをUSB接続した状態で初回ビルドする。 |
 | サンプルの hello_world を使用してビルドしても「Hello world!」が出力されない。 | 本手順書で対応漏れの項目がある。 | 本手順書通りに対応し、対応できない項目があれば有識者に確認する。 |
-| ビルド後、エラーメッセージ「No serial ports found.」が表示される | マイコンがPCと接続されていない。または、ポート番号がかみ合っていない。 | デバイスマネージャーを起動し、ポート番号が認証していることを確認する。 |
+| ビルド後、エラーメッセージ「No serial ports found.」が表示される。 | マイコンがPCと接続されていない。または、ポート番号がかみ合っていない。 | デバイスマネージャーを起動し、ポート番号が認証していることを確認する。 |
 | ビルド後、エラーメッセージ「ERROR: A fatal error occurred: Could not open COM3, the port is busy or doesn't exist.」が表示される。 | 一方のvscodeでビルドまたは実行中の時、他方のvscodeでビルドしている。 | ビルドまたは実行時は1ファイルのみにする。 |
-| ビルドは成功したが、LEDが点灯しない、ボタン操作が機能しない。 | プログラムとマイコンでPIN番号が一致していない | PIN番号を一致させる。 |
+| ビルドは成功したが、LEDが点灯しない、ボタン操作が機能しない。 | プログラムとマイコンでPIN番号が一致していない。 | PIN番号を一致させる。 |
 
 ## 8. 参考資料
 次の資料を参照する。
