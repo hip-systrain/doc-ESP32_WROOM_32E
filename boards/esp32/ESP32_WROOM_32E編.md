@@ -287,15 +287,12 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ## 4. コーディング・ビルド・書込み(RTOSなし)
 
 <!-- 各題材の節は「作るもの → 配線 → プログラム → ビルドと書込み → 動作確認」の順で書く -->
-
-### 4.1 題材1:LED点滅
-### 4.2 題材2:ボタン入力
-### 4.3 題材3:UART出力
-### 4.4 題材4:タイマ割込み
+本マイコンはRTOSの使用を前提としているため、この章は記載なし。  
+本来4章で行うはずだった題材1~4は5章へ移設されている。
 
 ## 5. コーディング・ビルド・書込み(FreeRTOS)
-FreeRTOSとは、組み込みシステム向けに設計された軽量・オープンソースのRTOS（Real-Time Operating System）である。
-また、RTOSとは、決められた期限内に処理を完了することを保証する組込み向けOSである。
+FreeRTOSとは、組み込みシステム向けに設計された軽量・オープンソースのRTOS（Real-Time Operating System）である。<br>
+また、RTOSとは、決められた期限内に処理を完了することを保証する組込み向けOSである。<br>
 FreeRTOSを導入することにより、次の利点がある。
 - マルチタスク管理、割り込み処理など、組み込み開発に必要な機能を利用できる
 - 複数の処理（通信、表示更新など）を並列に実行できる
@@ -307,9 +304,9 @@ FreeRTOSは、本手順書の「1.1 ツールのインストール」でイン�
 FreeRTOSは本手順書の「1.1 ツールのインストール」で既に導入されている為、対応しない。
 
 #### 5.1.2 FreeRTOSの設定変更
-本研修ではFreeRTOSの設定を変更しない為、対応しない。
+本研修ではFreeRTOSの設定を初期状態のまま手順実施するため、設定の変更は不要。<br>
 
-本章では、別の機会でFreeRTOSの設定を変更する場合を考慮して、設定方法と設定手順を次に示す。
+ただし、別の機会でFreeRTOSの設定を変更する場合を考慮して、設定方法と設定手順を次に示す。<br>
 ##### FreeRTOSの設定方法
 FreeRTOSの設定は、vscode内で表示するプロジェクトの設定画面（menuconfig）で行う。
 （FreeRTOSの設定変更は、既に用意されている機能の有効と無効を決定するのみの為、マウスクリックやEnterキー押下で設定を切り替えることができる。）
@@ -322,9 +319,289 @@ FreeRTOSの設定は、vscode内で表示するプロジェクトの設定画面
 1. プロジェクトの設定画面の表示が更新されたら、"FreeRTOS"を選択する。
 1. FreeRTOSの設定内容が表示される。
 
-### 5.2 題材5:複数タスク
+### 5.2　題材1:LED点滅
 #### 5.2.1 作るもの
-本章では、ボード内にある外付けの LED とボタンを用いて、LEDタスクとボタンタスクを動かすプログラムを作成する。
+本題材ではブレッドボード上の外付けLEDを0.5秒ごとに点滅させるプログラムを作成する。
+
+#### 5.2.2 配線
+本研修では事前に配線済みのマイコンを使用する為、新たに配線をする必要はない。<br>
+配線の詳細を次に示す。<br>
+LEDのピン：GPIO25<br>
+LEDのつなぎ方：GPIO25 → 抵抗 → LED の長い足 → 短い足 → GND<br>
+<img src="./images/E1_wiring.png" width="" height=""><br>
+
+#### 5.2.3 プログラム
+LEDを点滅させるプログラムを次に示す。<br>
+```C
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+
+#define LED_GPIO    25   // LEDピン番号
+
+void app_main(void)
+{
+    bool led_on = false;
+
+    // LED GPIO設定
+    gpio_config_t io_conf = 
+    {
+        .pin_bit_mask = (1ULL << LED_GPIO),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&io_conf);
+
+    while (1) 
+    {
+        // LEDの状態を切り替え
+        led_on = !led_on;
+        gpio_set_level(LED_GPIO, led_on ? 1 : 0);
+        // ログ出力（デバッグ用）
+        ESP_LOGI("LED", "LED %s", led_on ? "ON" : "OFF");
+        // 0.5秒待機
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+}
+```
+#### 5.2.4 ビルドと書き込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.2.5 動作確認
+ビルド成功後、次の確認を行う。<br>
+- LEDが点滅することを確認する。<br>
+- ターミナルにLED: LED ONと、 LED: LED OFF が交互に表示されることを確認する。<br>
+
+### 5.3　題材2:ボタン入力
+#### 5.3.1 作るもの
+本題材ではボタンを押している間だけLEDを点灯するプログラムを作成する。
+#### 5.3.2 配線
+本研修では事前に配線済みのマイコンを使用する為、新たに配線をする必要はない。<br>
+配線の詳細を次に示す。<br>
+LEDのピン：GPIO25<br>
+ボタンのピン：GPIO26<br>
+
+LEDのつなぎ方：GPIO25 → 抵抗 → LED の長い足 → 短い足 → GND<br>
+ボタンのつなぎ方：GPIO26 → タクトスイッチ → GND<br>
+<img src="./images/E1_wiring.png" width="" height=""><br>
+
+#### 5.3.3 プログラム
+ボタン押下時にLEDを点灯させるプログラムを次に示す。<br>
+```C
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+
+#define LED_GPIO    25
+#define BUTTON_GPIO 26
+
+static const char *TAG = "LED_CONTROL";
+
+void app_main(void)
+{
+    int led_state = 0;
+
+    // LEDを出力モードに設定
+    gpio_reset_pin(LED_GPIO);
+    gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
+
+    // ボタンを入力モードに設定
+    gpio_reset_pin(BUTTON_GPIO);
+    gpio_set_direction(BUTTON_GPIO, GPIO_MODE_INPUT);
+
+    // 内部プルアップ抵抗を有効化
+    gpio_set_pull_mode(BUTTON_GPIO, GPIO_PULLUP_ONLY);
+
+    // LED初期状態
+    gpio_set_level(LED_GPIO, 0);
+
+    while (1) {
+        // ボタンの状態を取得
+        int button_state = gpio_get_level(BUTTON_GPIO);
+
+        // ボタンが押されている場合（LOW）
+        int new_led_state = (button_state == 0) ? 1 : 0;
+
+        // LEDの状態が変化した場合
+        if (led_state != new_led_state) {
+            led_state = new_led_state;
+
+            gpio_set_level(LED_GPIO, led_state);
+
+            if (led_state == 1) {
+                ESP_LOGI(TAG, "LED ON");
+            } else {
+                ESP_LOGI(TAG, "LED OFF");
+            }
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+```
+#### 5.3.4 ビルドと書き込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.3.5 動作確認
+ビルド成功後、次の確認を行う。<br>
+- ボタンを押したときターミナルにLED_CONTROL: LED ONが表示されることを確認する。<br>
+- ボタンを離したときターミナルにLED_CONTROL: LED OFFが表示されることを確認する。<br>
+- また、ボタン押下中にLEDが点灯し、離すと消灯することを確認する。<br>
+
+### 5.4　題材3:UART出力
+#### 5.4.1 作るもの
+ボタンを押した回数をターミナルに出力するプログラムを作成する。<br>
+
+#### 5.4.2 配線
+本研修では事前に配線済みのマイコンを使用する為、新たに配線をする必要はない。<br>
+配線の詳細を次に示す。<br>
+ボタンのピン：GPIO26<br>
+ボタンのつなぎ方：GPIO26 → タクトスイッチ → GND<br>
+<img src="./images/E1_wiring.png" width="" height=""><br>
+
+#### 5.4.3 プログラム
+ボタンの押下回数をターミナルに表示するプログラムを次に示す。<br>
+```C
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+
+#define BUTTON_GPIO GPIO_NUM_26
+
+static const char *TAG = "BUTTON";
+
+void app_main(void)
+{
+    int button_count = 0;
+    int previous_button_state = 1;
+
+    // ボタンを入力モードに設定
+    gpio_reset_pin(BUTTON_GPIO);
+    gpio_set_direction(BUTTON_GPIO, GPIO_MODE_INPUT);
+
+    // 内部プルアップ抵抗を有効化
+    gpio_set_pull_mode(BUTTON_GPIO, GPIO_PULLUP_ONLY);
+
+    while (1) {
+        // ボタンの状態を取得
+        int button_state = gpio_get_level(BUTTON_GPIO);
+
+        // ボタンが押された瞬間（HIGH → LOW）
+        if (previous_button_state == 1 && button_state == 0) {
+            button_count++;
+
+            ESP_LOGI(TAG, "Button count: %d", button_count);
+        }
+
+        // ボタンの状態を保存
+        previous_button_state = button_state;
+
+        // 30ms待機
+        vTaskDelay(pdMS_TO_TICKS(30));
+    }
+}
+```
+#### 5.4.4 ビルドと書き込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.4.5 動作確認
+ビルド成功後、次の確認を行う。<br>
+- ボタンを押すと次のようにカウントがターミナルに表示されることを確認する。<br>
+BUTTON: Button count: 1<br>
+BUTTON: Button count: 2<br>
+BUTTON: Button count: 3 …<br>
+
+### 5.5　題材4:タイマ割込み
+#### 5.5.1 作るもの
+タイマの割込みでLEDを点滅させるプログラムを作成する。<br>
+
+#### 5.5.2 配線
+配線は[題材1](#522-配線)と同様。
+#### 5.5.3 プログラム
+タイマ割込みでLEDを点滅させるプログラムを次に示す。<br>
+```C
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_timer.h"
+#include "esp_log.h"
+
+#define LED_GPIO    25  // LEDピン番号
+static const char *TAG = "LED_TIMER";
+
+static bool led_on = false; // LED状態を保持
+
+// タイマーコールバック
+static void led_timer_callback(void *arg) 
+{
+    // LEDの状態を切り替え
+    led_on = !led_on;
+    gpio_set_level(LED_GPIO, led_on);
+    // ログ出力
+    ESP_LOGI(TAG, "LED %s", led_on ? "ON" : "OFF");
+}
+
+void app_main(void)
+{
+    // LED GPIO設定
+    gpio_config_t io_conf = 
+    {
+        .pin_bit_mask = (1ULL << LED_GPIO),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE
+    };
+    gpio_config(&io_conf);
+
+    // タイマーハンドル
+    esp_timer_handle_t led_timer;
+
+    // タイマー設定値
+    esp_timer_create_args_t timer_args = 
+    {
+        .callback = &led_timer_callback,
+        .arg = NULL,
+        .name = "led_timer"
+    };
+
+    // タイマー作成
+    esp_err_t ret = esp_timer_create(&timer_args, &led_timer);
+    if (ret != ESP_OK) 
+    {
+        ESP_LOGE(TAG, "Failed to create timer: %s", esp_err_to_name(ret));
+        return;
+    }
+
+    // タイマー開始（500ms = 500000μs）
+    ret = esp_timer_start_periodic(led_timer, 500000);
+    if (ret != ESP_OK) 
+    {
+        ESP_LOGE(TAG, "Failed to start timer: %s", esp_err_to_name(ret));
+        return;
+    }
+
+    while (true) 
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
+```
+#### 5.5.4 ビルドと書き込み
+本手順書の「2.3 動作確認」と同様の対応をする。
+
+#### 5.5.5 動作確認
+LEDが点滅することを目視する。<br>
+ターミナルにLED: LED ONと、 LED: LED OFF が交互に表示されることを確認する。<br>
+
+### 5.6 題材5:複数タスク
+#### 5.6.1 作るもの
+本章では、ボード内にある外付けの LED とボタンを用いて、LEDタスクとボタンタスクを動かすプログラムを作成する。<br>
 タスクの作成は、API関数のxTaskCreate()を使用する。
 
 ##### xTaskCreate()の概要
@@ -339,11 +616,10 @@ xTaskCreate()で設定する引数の意味を次に示す。
       TaskHandle_t *pvCreatedTask  // タスクを動かすコアを指定（不要ならばNULL）
     );
 
-#### 5.2.2 配線
-LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
-ボタンの配線は、本手順書の「4.2 題材2:ボタン入力」を参照する。
+#### 5.6.2 配線
+配線は[題材2](#532-配線)と同様。<br>
 
-#### 5.2.3 プログラム
+#### 5.6.3 プログラム
 複数タスク(LEDタスクとボタンタスク)を用いたプログラムを次に示す。
 
     #include "freertos/FreeRTOS.h"
@@ -413,10 +689,10 @@ LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
         }
     }
 
-#### 5.2.4 ビルドと書込み
+#### 5.6.4 ビルドと書込み
 本手順書の「2.3 動作確認」と同様の対応をする。
 
-#### 5.2.5 動作確認
+#### 5.6.5 動作確認
 ビルド成功後、次の確認を行う。
 - マイコンボードのボタンを押すことで、LEDの表示でON/OFFが切り替わることを確認する。
 - マイコンボードのボタンを押し続けることで、LEDの表示が点滅することを確認する。
@@ -424,11 +700,11 @@ LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
   * BUTTON: LED state changed: 1
   * BUTTON: LED state changed: 0
 
-### 5.3 題材6:タスク間通信
-#### 5.3.1 作るもの
-本章では、ボード内にある外付けの LED とボタンを用いて、キューで LED の点滅の速さを切り替えるプログラムを作成する。
-キューとはタスクの間でデータを交換するための仕組みである。
-キューの作成は、API関数のxQueueCreate()関数を使用する。
+### 5.7 題材6:タスク間通信
+#### 5.7.1 作るもの
+本章では、ボード内にある外付けの LED とボタンを用いて、キューで LED の点滅の速さを切り替えるプログラムを作成する。<br>
+キューとはタスクの間でデータを交換するための仕組みである。<br>
+キューの作成は、API関数のxQueueCreate()関数を使用する。<br>
 また、キューの送信と受信は、API関数のxQueueSend()関数とxQueueReceive()関数を使用する。
 
 ##### xQueueCreate()の概要
@@ -457,11 +733,10 @@ xQueueReceive()で設定する引数の意味を次に示す。
       TickType_t xTicksToWait     // キューが空の場合の待ち時間
     );
 
-#### 5.3.2 配線
-LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
-ボタンの配線は、本手順書の「4.2 題材2:ボタン入力」を参照する。
+#### 5.7.2 配線
+配線は[題材2](#532-配線)と同様。<br>
 
-#### 5.3.3 プログラム
+#### 5.7.3 プログラム
 キューを用いたタスク間通信のプログラムを次に示す。
 
     #include "freertos/FreeRTOS.h"
@@ -564,10 +839,10 @@ LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
         }
     }
 
-#### 5.3.4 ビルドと書込み
+#### 5.7.4 ビルドと書込み
 本手順書の「2.3 動作確認」と同様の対応をする。
 
-#### 5.3.5 動作確認
+#### 5.7.5 動作確認
 ビルド成功後、次の確認を行う。
 - マイコンボードのボタンを押すことで、LEDの点滅表示の速度が切り替わることを確認する。
 - マイコンボードのボタンを押すことで、vscodeのターミナルに速度が更新されたログが表示されることを確認する。
