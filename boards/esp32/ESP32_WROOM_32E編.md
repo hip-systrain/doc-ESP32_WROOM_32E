@@ -70,7 +70,7 @@ FreeRTOSを利用したマルチタスク処理に対応しており、センサ
 
 #### 用語解説
 - マイコン  
-マイコン（Microcontroller Unit, MCU）とは、CPU・メモリ・入出力（I/O）などを1つのICに集積した小型コンピュータのこと。  
+マイコン(Microcontroller Unit, MCU)とは、CPU・メモリ・入出力(I/O)などを1つのICに集積した小型コンピュータのこと。  
 家電や自動車などの電子機器を制御するために使われる。  
 
 - GPIO  
@@ -130,81 +130,70 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 #### ESP-IDF Extension インストール手順
 1. 画像の①からVSCodeの拡張機能を開く。<br>
 1. 画像の②にESP-IDFと入力し検索する。<br>
-1. 画像の③をクリックしてESP-IDFのインストールページを開く。<br>
+1. 画像の③を押下してESP-IDFのインストールページを開く。<br>
 <img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br>
 <br>
 
-1. Installボタンをクリックしてインストールする。<br>
+1. Installボタンを押下してインストールする。<br>
 <img src="./images/E1_ESP-IDFex_install2.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順2"><br>
 <br>
 
 #### ESP-IDF Installation Maneger ダウンロード手順
 1. Espressifの[公式ダウンロードページ](https://dl.espressif.com/dl/eim/)にアクセスする。<br>
 1. `eim-gui-windows-x64.exe`をダウンロードする。<br>
-<img src="./images/E1_ESP-eim_download.png" width="300" height="" alt="EIM_download手順"><br>
-<br>
+<img src="./images/E1_ESP-eim_download.png" width="300" height="" alt="EIM_download手順"><br><br>
 
 #### ESP-IDF 本体インストール手順
 1. `eim-gui-windows-x64.exe`を実行する。
 
 1. Start Installationを押下する。<br>
-<img src="./images/E1_ESP-IDF_install1.png" width="300" height="" alt="Start_Installation"><br>
-<br>
+<img src="./images/E1_ESP-IDF_install1.png" width="300" height="" alt="Start_Installation"><br><br>
 
 1. Start Easy Installationを押下する。<br>
-<img src="./images/E1_ESP-IDF_install2.png" width="300" height="" alt="Easy_Installation"><br>
-<br>
+<img src="./images/E1_ESP-IDF_install2.png" width="300" height="" alt="Easy_Installation"><br><br>
 
 1. インストールするESP-IDFのバージョンを選択する。<br>
-<img src="./images/E1_ESP-IDF_install3.png" width="300" height="" alt="Version_select"><br>
-<br>
+<img src="./images/E1_ESP-IDF_install3.png" width="300" height="" alt="Version_select"><br><br>
 
-1. 1. Start Installationを押下する。<br>
-<img src="./images/E1_ESP-IDF_install4.png" width="300" height="" alt="Start_Installation2"><br>
-<br>
+1. Start Installationを押下する。<br>
+<img src="./images/E1_ESP-IDF_install4.png" width="300" height="" alt="Start_Installation2"><br><br>
 
 1. インストールを待つ。(15分～30分程度)<br>
-<img src="./images/E1_ESP-IDF_install5.png" width="300" height="" alt="Wait_Installation"><br>
-<br>
+<img src="./images/E1_ESP-IDF_install5.png" width="300" height="" alt="Wait_Installation"><br><br>
 
 1. インストール完了画面が出たことを確認する。<br>
-<img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br>
-<br>
+<img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br><br>
 
 
 ### 1.2 ドライバのインストール
 #### CP210x Windows Drivers インストール手順
 1. [ドライバダウンロードページ](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)へアクセスする。<br>
 1. CP210x Windows Driversを押下する。(zipファイルがダウンロードされる)<br>
-<img src="./images/E1_CP210xDrivers_install1.png" width="300" height="" alt="Driver_Installation"><br>
-<br>
+<img src="./images/E1_CP210xDrivers_install1.png" width="300" height="" alt="Driver_Installation"><br><br>
 
 1. ダウンロードしたzipファイルを任意の場所に解凍する。<br>
 1. `CP210xVCPInstaller_x64`を実行する。<br>
 1. 「次へ」を押下する。<br>
-<img src="./images/E1_CP210xDrivers_install2.png" width="300" height="" alt="Driver_Installation2"><br>
-<br>
+<img src="./images/E1_CP210xDrivers_install2.png" width="300" height="" alt="Driver_Installation2"><br><br>
 
 
 1. 「同意します」にチェックを入れて「次へ」を押下する。<br>
-<img src="./images/E1_CP210xDrivers_install3.png" width="300" height="" alt="Driver_Installation3"><br>
-<br>
+<img src="./images/E1_CP210xDrivers_install3.png" width="300" height="" alt="Driver_Installation3"><br><br>
 
 1. 完了画面を確認する。<br>
-<img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br>
-<br>
+<img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br><br>
 
 
 ### 1.3 インストールできたことの確認
 次の2点の確認をもってインストール完了とする。<br>
-- ESP-IDF WelcomeからNew projectを選択して画面上部にESP-IDF v6.1が出ること。<br>
+- ESP-IDF WelcomeからNew projectを選択して画面上部にインストールしたバージョンのESP-IDFが出ること。<br>
 <img src="./images/E1_check_install_IDF.png" width="500" height="" alt="check_Install"><br>
 - マイコンをPCと接続したときデバイスマネージャーでCOMx(例：COM5)としてポートが表示されること。<br>
 
 <img src="./images/E1_check_install_Driver.png" width="300" height="" alt="check_Install2"><br>
 
 ## 2. シリアルターミナルの使い方
-2章ではモニタの使い方とログの出力方法を説明する。<br>
+2章ではシリアルターミナルの使い方とログの出力方法を説明する。<br>
 
 ### 2.1 使用するツールと接続方法
 使用するツール：VS Code(ESP-IDF Extension)<br>
@@ -214,7 +203,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ポート：COM3(Silicon Labs CP210x USB to UART Bridgeが表示されるポート)<br>
 ボーレート：ESP-IDFにより自動設定されるため設定は不要。<br>
 ### 2.3 動作確認
-サンプルプログラムをマイコンに書き込んで実行し、シリアルターミナルの表示を確認する。<br>
+サンプルプログラムをマイコンに書き込んで実行し、シリアルターミナルの出力を確認する。<br>
 次に手順を示す。<br>
 1. `ctrl + shift + P`コマンドでコマンドパレットを開く。<br>
 
@@ -291,11 +280,11 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 本来4章で行うはずだった題材1~4は5章へ移設されている。
 
 ## 5. コーディング・ビルド・書込み(FreeRTOS)
-FreeRTOSとは、組み込みシステム向けに設計された軽量・オープンソースのRTOS（Real-Time Operating System）である。<br>
+FreeRTOSとは、組み込みシステム向けに設計された軽量・オープンソースのRTOS(Real-Time Operating System)である。<br>
 また、RTOSとは、決められた期限内に処理を完了することを保証する組込み向けOSである。<br>
 FreeRTOSを導入することにより、次の利点がある。
 - マルチタスク管理、割り込み処理など、組み込み開発に必要な機能を利用できる
-- 複数の処理（通信、表示更新など）を並列に実行できる
+- 複数の処理(通信、表示更新など)を並列に実行できる
 
 ### 5.1 FreeRTOSの導入・設定
 FreeRTOSは、本手順書の「1.1 ツールのインストール」でインストールしたESP-IDF(Espressif IoT Development Framework)に組み込まれている。
@@ -304,18 +293,18 @@ FreeRTOSは、本手順書の「1.1 ツールのインストール」でイン�
 FreeRTOSは本手順書の「1.1 ツールのインストール」で既に導入されている為、対応しない。
 
 #### 5.1.2 FreeRTOSの設定変更
-本研修ではFreeRTOSの設定を初期状態のまま手順実施するため、設定の変更は不要。<br>
+本研修ではFreeRTOSの設定を初期状態のまま手順実施するため、設定の変更は不要とする。<br>
 
 ただし、別の機会でFreeRTOSの設定を変更する場合を考慮して、設定方法と設定手順を次に示す。<br>
 ##### FreeRTOSの設定方法
-FreeRTOSの設定は、vscode内で表示するプロジェクトの設定画面（menuconfig）で行う。
-（FreeRTOSの設定変更は、既に用意されている機能の有効と無効を決定するのみの為、マウスクリックやEnterキー押下で設定を切り替えることができる。）
+FreeRTOSの設定は、vscode内で表示するプロジェクトの設定画面(menuconfig)で行う。<br>
+(FreeRTOSの設定変更は、既に用意されている機能の有効と無効を決定するのみの為、マウスクリックやEnterキー押下で設定を切り替えることができる。)
 
 ##### FreeRTOSの設定手順
 1. vscodeをアクティブにして、「F1」キーを押下する。
 1. vscodeの画面上部で「ESP-IDF:Open Classic Menuconfig Terminal」の項目を押下する。
 1. Windows PowerShellが自動実行される為、自動終了するまで待機する。
-1. プロジェクトの設定画面（menuconfig）が、vscode内に表示されたら、"Compornent Config"を選択する。
+1. プロジェクトの設定画面(menuconfig)が、vscode内に表示されたら、"Compornent Config"を選択する。
 1. プロジェクトの設定画面の表示が更新されたら、"FreeRTOS"を選択する。
 1. FreeRTOSの設定内容が表示される。
 
@@ -360,7 +349,7 @@ void app_main(void)
         // LEDの状態を切り替え
         led_on = !led_on;
         gpio_set_level(LED_GPIO, led_on ? 1 : 0);
-        // ログ出力（デバッグ用）
+        // ログ出力(デバッグ用)
         ESP_LOGI("LED", "LED %s", led_on ? "ON" : "OFF");
         // 0.5秒待機
         vTaskDelay(pdMS_TO_TICKS(500));
@@ -368,12 +357,12 @@ void app_main(void)
 }
 ```
 #### 5.2.4 ビルドと書き込み
-本手順書の「2.3 動作確認」と同様の対応をする。
+本手順書の「[2.3 動作確認](#23-動作確認)」と同様の対応をする。
 
 #### 5.2.5 動作確認
 ビルド成功後、次の確認を行う。<br>
 - LEDが点滅することを確認する。<br>
-- ターミナルにLED: LED ONと、 LED: LED OFF が交互に表示されることを確認する。<br>
+- ターミナルにLED: LED ONと、 LED: LED OFF が交互に出力されることを確認する。<br>
 
 ### 5.3　題材2:ボタン入力
 #### 5.3.1 作るもの
@@ -423,7 +412,7 @@ void app_main(void)
         // ボタンの状態を取得
         int button_state = gpio_get_level(BUTTON_GPIO);
 
-        // ボタンが押されている場合（LOW）
+        // ボタンが押下されている場合(LOW)
         int new_led_state = (button_state == 0) ? 1 : 0;
 
         // LEDの状態が変化した場合
@@ -444,17 +433,17 @@ void app_main(void)
 }
 ```
 #### 5.3.4 ビルドと書き込み
-本手順書の「2.3 動作確認」と同様の対応をする。
+本手順書の「[2.3 動作確認](#23-動作確認)」と同様の対応をする。
 
 #### 5.3.5 動作確認
 ビルド成功後、次の確認を行う。<br>
-- ボタンを押したときターミナルにLED_CONTROL: LED ONが表示されることを確認する。<br>
-- ボタンを離したときターミナルにLED_CONTROL: LED OFFが表示されることを確認する。<br>
-- また、ボタン押下中にLEDが点灯し、離すと消灯することを確認する。<br>
+- ボタンを押下したときターミナルにLED_CONTROL: LED ONが出力されることを確認する。<br>
+- ボタンを離したときターミナルにLED_CONTROL: LED OFFが出力されることを確認する。<br>
+- ボタン押下中にLEDが点灯し、離すと消灯することを確認する。<br>
 
 ### 5.4　題材3:UART出力
 #### 5.4.1 作るもの
-ボタンを押した回数をターミナルに出力するプログラムを作成する。<br>
+ボタンを押下した回数をターミナルに出力するプログラムを作成する。<br>
 
 #### 5.4.2 配線
 本研修では事前に配線済みのマイコンを使用する為、新たに配線をする必要はない。<br>
@@ -464,7 +453,7 @@ void app_main(void)
 <img src="./images/E1_wiring.png" width="" height=""><br>
 
 #### 5.4.3 プログラム
-ボタンの押下回数をターミナルに表示するプログラムを次に示す。<br>
+ボタンの押下回数をターミナルに出力するプログラムを次に示す。<br>
 ```C
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -491,7 +480,7 @@ void app_main(void)
         // ボタンの状態を取得
         int button_state = gpio_get_level(BUTTON_GPIO);
 
-        // ボタンが押された瞬間（HIGH → LOW）
+        // ボタンが押下された瞬間(HIGH → LOW)
         if (previous_button_state == 1 && button_state == 0) {
             button_count++;
 
@@ -507,11 +496,11 @@ void app_main(void)
 }
 ```
 #### 5.4.4 ビルドと書き込み
-本手順書の「2.3 動作確認」と同様の対応をする。
+本手順書の「[2.3 動作確認](#23-動作確認)」と同様の対応をする。
 
 #### 5.4.5 動作確認
 ビルド成功後、次の確認を行う。<br>
-- ボタンを押すと次のようにカウントがターミナルに表示されることを確認する。<br>
+- ボタンを押下すると次のようにカウントがターミナルに出力されることを確認する。<br>
 BUTTON: Button count: 1<br>
 BUTTON: Button count: 2<br>
 BUTTON: Button count: 3 …<br>
@@ -578,7 +567,7 @@ void app_main(void)
         return;
     }
 
-    // タイマー開始（500ms = 500000μs）
+    // タイマー開始(500ms = 500000μs)
     ret = esp_timer_start_periodic(led_timer, 500000);
     if (ret != ESP_OK) 
     {
@@ -593,11 +582,12 @@ void app_main(void)
 }
 ```
 #### 5.5.4 ビルドと書き込み
-本手順書の「2.3 動作確認」と同様の対応をする。
+本手順書の「[2.3 動作確認](#23-動作確認)」と同様の対応をする。
 
 #### 5.5.5 動作確認
-LEDが点滅することを目視する。<br>
-ターミナルにLED: LED ONと、 LED: LED OFF が交互に表示されることを確認する。<br>
+ビルド成功後、次の確認を行う。<br>
+- LEDが点滅することを確認する。<br>
+- ターミナルにLED: LED ONと、 LED: LED OFF が交互に出力されることを確認する。<br>
 
 ### 5.6 題材5:複数タスク
 #### 5.6.1 作るもの
@@ -606,22 +596,23 @@ LEDが点滅することを目視する。<br>
 
 ##### xTaskCreate()の概要
 xTaskCreate()で設定する引数の意味を次に示す。
-
+```C
     BaseType_t xTaskCreate(
       TaskFunction_t pvTaskCode,   // タスクとして実行する関数名
       const char * const pcName,   // デバッグ用に表示するタスク名
       const uint32_t usStackDepth, // タスクに割り当てるスタックの大きさ
-      void *pvParameters,          // タスクに渡す引数（不要ならばNULL）
-      UBaseType_t uxPriority,      // タスクの優先度（数値が大きいほど高優先度）
-      TaskHandle_t *pvCreatedTask  // タスクを動かすコアを指定（不要ならばNULL）
+      void *pvParameters,          // タスクに渡す引数(不要ならばNULL)
+      UBaseType_t uxPriority,      // タスクの優先度(数値が大きいほど高優先度)
+      TaskHandle_t *pvCreatedTask  // タスクを動かすコアを指定(不要ならばNULL)
     );
+```
 
 #### 5.6.2 配線
 配線は[題材2](#532-配線)と同様。<br>
 
 #### 5.6.3 プログラム
 複数タスク(LEDタスクとボタンタスク)を用いたプログラムを次に示す。
-
+```C
     #include "freertos/FreeRTOS.h"
     #include "freertos/task.h"
     #include "driver/gpio.h"
@@ -649,7 +640,7 @@ xTaskCreate()で設定する引数の意味を次に示す。
         };
         gpio_config(&io_conf);
 
-        // ボタン GPIO設定（入力 + プルアップ）
+        // ボタン GPIO設定(入力 + プルアップ)
         io_conf.pin_bit_mask = (1ULL << BUTTON_GPIO);
         io_conf.mode = GPIO_MODE_INPUT;
         io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
@@ -678,25 +669,26 @@ xTaskCreate()で設定する引数の意味を次に示す。
             // GPIOピンの出力レベルを取得
             if (gpio_get_level(BUTTON_GPIO) == 0) 
             { 
-                // 押下検出（押されたらLED状態切り替え）
+                // 押下検出(押下されたらLED状態切り替え)
                 led_on = !led_on;
                 ESP_LOGI("BUTTON", "LED state changed: %d", led_on);
-                // チャタリング（スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象）防止
+                // チャタリング(スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象)防止
                 vTaskDelay(pdMS_TO_TICKS(300));
             }
             // Delay(50ms)
             vTaskDelay(pdMS_TO_TICKS(50));
         }
     }
+```
 
 #### 5.6.4 ビルドと書込み
 本手順書の「2.3 動作確認」と同様の対応をする。
 
 #### 5.6.5 動作確認
 ビルド成功後、次の確認を行う。
-- マイコンボードのボタンを押すことで、LEDの表示でON/OFFが切り替わることを確認する。
-- マイコンボードのボタンを押し続けることで、LEDの表示が点滅することを確認する。
-- マイコンボードのボタンを押すことで、vscodeのターミナルに次の2点が交互に表示されることを確認する。
+- マイコンボードのボタンを押下することで、LEDの表示でON/OFFが切り替わることを確認する。
+- マイコンボードのボタンを押下し続けることで、LEDの表示が点滅することを確認する。
+- マイコンボードのボタンを押下することで、vscodeのターミナルに次の2点が交互に出力されることを確認する。
   * BUTTON: LED state changed: 1
   * BUTTON: LED state changed: 0
 
@@ -709,36 +701,39 @@ xTaskCreate()で設定する引数の意味を次に示す。
 
 ##### xQueueCreate()の概要
 xQueueCreate()で設定する引数の意味を次に示す。
-
+```C
     QueueHandle_t xQueueCreate( 
       UBaseType_t uxQueueLength,  // キューが収容可能なアイテムの最大数
       UBaseType_t uxItemSize      // キューの各項目が必要とするバイト数
     );
+```
 
 ##### xQueueSend()の概要
 xQueueSend()で設定する引数の意味を次に示す。
-
+```C
     BaseType_t xQueueSend(
       QueueHandle_t xQueue,       // キューのハンドル
       const void *pvItemToQueue,  // 送信データのポインタ
       TickType_t xTicksToWait     // キューが満杯の場合の待ち時間
     );
+```
 
 ##### xQueueReceive()の概要
 xQueueReceive()で設定する引数の意味を次に示す。
-
+```C
     BaseType_t xQueueReceive(
       QueueHandle_t xQueue,       // キューのハンドル
       void *pvBuffer,             // 受信データのポインタ
       TickType_t xTicksToWait     // キューが空の場合の待ち時間
     );
+```
 
 #### 5.7.2 配線
 配線は[題材2](#532-配線)と同様。<br>
 
 #### 5.7.3 プログラム
 キューを用いたタスク間通信のプログラムを次に示す。
-
+```C
     #include "freertos/FreeRTOS.h"
     #include "freertos/task.h"
     #include "freertos/queue.h"
@@ -810,7 +805,7 @@ xQueueReceive()で設定する引数の意味を次に示す。
                 {
                     ESP_LOGW(TAG, "Failed to send speed to queue");
                 }
-                // チャタリング（スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象）防止
+                // チャタリング(スイッチやボタンなどの接点が安定する前に短時間でON/OFFを繰り返す現象)防止
                 vTaskDelay(pdMS_TO_TICKS(500));
             }
             vTaskDelay(pdMS_TO_TICKS(50));
@@ -838,14 +833,15 @@ xQueueReceive()で設定する引数の意味を次に示す。
             vTaskDelay(pdMS_TO_TICKS(current_speed));
         }
     }
+```
 
 #### 5.7.4 ビルドと書込み
 本手順書の「2.3 動作確認」と同様の対応をする。
 
 #### 5.7.5 動作確認
 ビルド成功後、次の確認を行う。
-- マイコンボードのボタンを押すことで、LEDの点滅表示の速度が切り替わることを確認する。
-- マイコンボードのボタンを押すことで、vscodeのターミナルに速度が更新されたログが表示されることを確認する。
+- マイコンボードのボタンを押下することで、LEDの点滅表示の速度が切り替わることを確認する。
+- マイコンボードのボタンを押下することで、vscodeのターミナルに速度が更新されたログが出力されることを確認する。
   例：Speed updated to 300 ms
 
 ## 6. デバッグ
@@ -862,7 +858,7 @@ xQueueReceive()で設定する引数の意味を次に示す。
 | 症状 | 原因 | 対処 |
 |---|---|---|
 | サンプルの hello_world を使用しても、文頭にあるincludeの行が全てエラー表示になる。 | PCとマイコンをUSB接続した状態で初回ビルドをしていない。 | PCとマイコンをUSB接続した状態で初回ビルドする。 |
-| サンプルの hello_world を使用してビルドしても「Hello world!」が表示されない。 | 本手順書で対応漏れの項目がある。 | 本手順書通りに対応し、対応できない項目があれば有識者に確認する。 |
+| サンプルの hello_world を使用してビルドしても「Hello world!」が出力されない。 | 本手順書で対応漏れの項目がある。 | 本手順書通りに対応し、対応できない項目があれば有識者に確認する。 |
 | ビルド後、エラーメッセージ「No serial ports found.」が表示される | マイコンがPCと接続されていない。または、ポート番号がかみ合っていない。 | デバイスマネージャーを起動し、ポート番号が認証していることを確認する。 |
 | ビルド後、エラーメッセージ「ERROR: A fatal error occurred: Could not open COM3, the port is busy or doesn't exist.」が表示される。 | 一方のvscodeでビルドまたは実行中の時、他方のvscodeでビルドしている。 | ビルドまたは実行時は1ファイルのみにする。 |
 | ビルドは成功したが、LEDが点灯しない、ボタン操作が機能しない。 | プログラムとマイコンでPIN番号が一致していない | PIN番号を一致させる。 |
