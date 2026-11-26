@@ -517,7 +517,10 @@ LEDの配線は、本手順書の「4.1 題材1:LED点滅」を参照する。
 | ビルドは成功したが、LEDが点灯しない、ボタン操作が機能しない。 | プログラムとマイコンでPIN番号が一致していない | PIN番号を一致させる。 |
 
 ## 8. 参考資料
-- 
+次の資料を参照する。
+<!-- - ESP32-WROOM-32E要件定義書v.1.0 -->
+- [ESP32-WROOM-32E 編 手順書づくりの進め方](https://docs.google.com/presentation/d/1GP42-cAqSeLSWWjw3OBF355qW8Jxrs_-VJxGFi3ITQo/edit?usp=drive_link)
+- [手順書テンプレートの使い方](https://docs.google.com/presentation/d/1Bl2NqJz9W8lAkm-M4A8aKznSpVRzpFoKyBHCuVhZBM0/edit?usp=drive_link)
 
 <!-- ボード独自の追加章がある場合は、ここから「## 9. 〜」として追加する -->
 
