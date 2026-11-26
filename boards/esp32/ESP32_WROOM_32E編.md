@@ -28,6 +28,11 @@
 | 0.2 | 2026/11/20 | E1 | 第0章を追加 |
 | 0.3 | 2026/11/24 | E2 | 第5章を追加 |
 | 0.4 | 2026/11/24 | E1 | 第1章を追加 |
+| 0.5 | 2026/11/25 | E2 | 第3章を追加 |
+| 0.6 | 2026/11/25 | E2 | 第7章を追加 |
+| 0.7 | 2026/11/25 | E2 | 第8章を追加 |
+| 0.8 | 2026/11/26 | E1 | 第2章を追加 |
+
 ---
 
 ## 0. 概要
@@ -55,7 +60,7 @@
 #### 開発の前提条件
 開発にあたって次に示す内容を確認しておくこと。
 - 開発は[技術資料](http://hst-saba:3000/675802efc7569e701fb1c2ee)に記載された手順に沿って進める。  
-- ツールやドライバのバージョンはメンバー間で統一する。 
+- ツールやドライバのバージョンはメンバー間で統一する。 (本手順書に記載のバージョンと一致させる必要はない)
 
 #### 開発対象マイコンの概要
 ESP32-WROOM-32Eとは
@@ -214,69 +219,69 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 1. `ctrl + shift + P`コマンドでコマンドパレットを開く。<br>
 
 1. コマンドパレットに`ESP-IDF: New Project`を入力し、赤枠で囲んだ`ESP-IDF: New Project`を押下する。<br>
-<img src="./images/E1_ESP-IDF_New_Project2.png" width="300" height="" alt="New_Project"><br>
+<img src="./images/E1_ESP-IDF_New_Project2.png" width="300" height="" alt="New_Project"><br><br>
 
 1. ESP-IDFのバージョンを選択する。<br>
-<img src="./images/E1_ESP-IDF_ver_select.png" width="300" height="" alt="ESP-IDF_ver.select"><br>
+<img src="./images/E1_ESP-IDF_ver_select.png" width="300" height="" alt="ESP-IDF_ver.select"><br><br>
 
 1. ESP-IDF Examples > get-started > hello_worldと押下して進む。<br>
-<img src="./images/E1_ESP-IDF_hello1.png" width="300" height="" alt="hello1"><br>
+<img src="./images/E1_ESP-IDF_hello1.png" width="300" height="" alt="hello1"><br><br>
 
 1. hello_worldを押下すると赤枠で示したボタンが表示されるので押下する。<br>
-<img src="./images/E1_ESP-IDF_hello2.png" width="300" height="" alt="hello2"><br>
+<img src="./images/E1_ESP-IDF_hello2.png" width="300" height="" alt="hello2"><br><br>
 
 1. Choose ESP-IDF Target (IDF_TARGET)をesp32にする。<br>
 他の項目はデフォルトのままでよい。<br>
-<img src="./images/E1_ESP-IDF_hello3.png" width="300" height="" alt="hello3"><br>
+<img src="./images/E1_ESP-IDF_hello3.png" width="300" height="" alt="hello3"><br><br>
 
 1. 右下のCreate Projectを押下する。<br>
-<img src="./images/E1_ESP-IDF_hello9.png" width="300" height="" alt="hello9"><br>
+<img src="./images/E1_ESP-IDF_hello9.png" width="300" height="" alt="hello9"><br><br>
 
 1. Open Projectを押下する。<br>
-<img src="./images/E1_ESP-IDF_hello4.png" width="300" height="" alt="hello4"><br>
+<img src="./images/E1_ESP-IDF_hello4.png" width="300" height="" alt="hello4"><br><br>
 
 1. 画面下部のプラグマークを押下する。<br>
-<img src="./images/E1_ESP-IDF_hello5.png" width="300" height="" alt="hello5"><br>
+<img src="./images/E1_ESP-IDF_hello5.png" width="300" height="" alt="hello5"><br><br>
 
 1. 画面上部のCOMx Silicon Labsを押下する。<br>
-<img src="./images/E1_ESP-IDF_hello6.png" width="300" height="" alt="hello6"><br>
+<img src="./images/E1_ESP-IDF_hello6.png" width="300" height="" alt="hello6"><br><br>
 
 1. 画面下部の炎マーク(Build, Flash and Monitor)を押下する。<br>
-<img src="./images/E1_ESP-IDF_hello7.png" width="300" height="" alt="hello7"><br>
+<img src="./images/E1_ESP-IDF_hello7.png" width="300" height="" alt="hello7"><br><br>
 
 1. ビルドと書き込みを待ち、ターミナルに`Hello world!`が出力されることを確認する。<br>
 このとき自動でプログラムがリスタートされ続けるが、期待通りの挙動。<br>
-<img src="./images/E1_ESP-IDF_hello8.png" width="300" height="" alt="hello8"><br>
+<img src="./images/E1_ESP-IDF_hello8.png" width="300" height="" alt="hello8"><br><br>
 
 ## 3. プロジェクト作成
 本章は新規プロジェクトの作成と、プロジェクトの構成について説明する。
 
 ### 3.1 新規プロジェクトの作成
-新規プロジェクトは、次の手順で作成される。
-1. vscodeをアクティブにして、「F1」キーを押下する。
-1. vscodeの画面上部で「ESP-IDF:New Project」の項目を押下する。
+新規プロジェクトは、次の手順で作成される。<br>
+1. vscodeをアクティブにして、「F1」キーを押下する。<br>
+1. vscodeの画面上部で「ESP-IDF:New Project」の項目を押下する。<br>
 <img src="./images/E1_3.1.png" width="500" height="" alt="setting1"><br><br>
 
-1. vscodeの画面上部で「ESP-IDF:Use ESP-IDF C:\・・・\esp-idf ESP-IDF vx.x.x」の項目を押下する。
+1. vscodeの画面上部で「ESP-IDF:Use ESP-IDF C:\・・・\esp-idf ESP-IDF vx.x.x」の項目を押下する。<br>
 <img src="./images/E1_3.2.png" width="500" height="" alt="setting2"><br><br>
 
-1. 「New Project」タブ内にある”ESP-IDF Templates”を選択し、"sample_project"を2回押下する。
+1. 「New Project」タブ内にある”ESP-IDF Templates”を選択し、"sample_project"を2回押下する。<br>
 <img src="./images/E1_3.3.png" width="500" height="" alt="setting3"><br><br>
 
-1. 「New Project」タブ内に表示された「Create project using template sample_project」を押下する。
+1. 「New Project」タブ内に表示された「Create project using template sample_project」を押下する。<br>
 <img src="./images/E1_3.4.png" width="500" height="" alt="setting4"><br><br>
 
-1. 「New Project」タブ内で画面が更新されたら、設定内容を確認し、画面下側にある「Create Project」を押下する。
-「Enter Project directory」の項目は任意のパスを設定する。その他の項目はデフォルトで設定する。
+1. 「New Project」タブ内で画面が更新されたら、設定内容を確認し、画面下側にある「Create Project」を押下する。<br>
+「Enter Project directory」の項目は任意のパスを設定する。その他の項目はデフォルトで設定する。<br>
 <img src="./images/E1_3.5.png" width="500" height="" alt="setting5"><br><br>
 
-1. 「New Project」タブ内で画面が更新されたら、「Open Project」を押下する。
+1. 「New Project」タブ内で画面が更新されたら、「Open Project」を押下する。<br>
 <img src="./images/E1_3.6.png" width="500" height="" alt="setting6"><br><br>
 
 ### 3.2 プロジェクトの構成(フォルダ・ファイルの役割)
-プロジェクト構成は次に示す。
-フォルダ：sample_projectで作成されたフォルダである。研修時はフォルダの追加をせずにデフォルトのままにする。
-ファイル：sample_projectで作成されたファイルである。研修時はファイルの追加をせずにmain.cの中に処理を全て記載する。
+プロジェクト構成は次に示す。<br>
+フォルダ：sample_projectで作成されたフォルダである。研修時はフォルダの追加をせずにデフォルトのままにする。<br>
+ファイル：sample_projectで作成されたファイルである。研修時はファイルの追加をせずにmain.cの中に処理を全て記載する。<br>
 <img src="./images/E1_3.8.png" width="500" height="" alt="setting7"><br>
 
 ## 4. コーディング・ビルド・書込み(RTOSなし)
