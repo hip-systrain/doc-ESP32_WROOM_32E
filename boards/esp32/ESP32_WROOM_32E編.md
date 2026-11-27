@@ -93,7 +93,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 ### 1.1 ツールのインストール
 #### VS Code インストール手順
-1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。
+1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。<br>
 <img src="./images/E1_vscode_download.png" width="300" height="" alt="VSCodeインストーラ_ダウンロード手順"><br><br>
 
 1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。<br>
