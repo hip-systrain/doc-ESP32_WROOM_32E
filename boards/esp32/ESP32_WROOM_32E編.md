@@ -93,7 +93,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 ### 1.1 ツールのインストール
 #### VS Code インストール手順
-1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。<br>
+1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。
 <img src="./images/E1_vscode_download.png" width="300" height="" alt="VSCodeインストーラ_ダウンロード手順"><br><br>
 
 1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。<br>
@@ -121,14 +121,14 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 #### ESP-IDF Extension インストール手順
 1. 画像の①からVSCodeの拡張機能を開く。
 1. 画像の②にESP-IDFと入力し検索する。
-1. 画像の③を押下してESP-IDFのインストールページを開く。
+1. 画像の③を押下してESP-IDFのインストールページを開く。<br>
 <img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br><br>
 
 1. Installボタンを押下してインストールする。<br>
 <img src="./images/E1_ESP-IDFex_install2.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順2"><br><br>
 
 #### ESP-IDF Installation Maneger ダウンロード手順
-1. Espressifの[公式ダウンロードページ](https://dl.espressif.com/dl/eim/)にアクセスする。<br>
+1. Espressifの[公式ダウンロードページ](https://dl.espressif.com/dl/eim/)にアクセスする。
 1. `eim-gui-windows-x64.exe`をダウンロードする。<br>
 <img src="./images/E1_ESP-eim_download.png" width="300" height="" alt="EIM_download手順"><br><br>
 
@@ -155,7 +155,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 ### 1.2 ドライバのインストール
 #### CP210x Windows Drivers インストール手順
-1. [ドライバダウンロードページ](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)へアクセスする。<br>
+1. [ドライバダウンロードページ](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)へアクセスする。
 1. CP210x Windows Driversを押下する。(zipファイルがダウンロードされる)<br>
 <img src="./images/E1_CP210xDrivers_install1.png" width="300" height="" alt="Driver_Installation"><br><br>
 
@@ -172,7 +172,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 
 ### 1.3 インストールできたことの確認
-次の2点の確認をもってインストール完了とする。<br>
+次の2点の確認をもってインストール完了とする。
 > 確認: ESP-IDF WelcomeからNew projectを選択して画面上部にインストールしたバージョンのESP-IDFが出れば成功<br>
 <img src="./images/E1_check_install_IDF.png" width="500" height="" alt="check_Install"><br>
 
@@ -182,14 +182,14 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 ## 2. シリアルターミナルの使い方
 本章ではシリアルターミナルの使い方とログの出力方法を説明する。
 ### 2.1 使用するツールと接続方法
-使用するツール：VS Code(ESP-IDF Extension)<br>
-接続方法：マイコンとPCをUSB接続する。<br>
+使用するツール：VS Code(ESP-IDF Extension)
+接続方法：マイコンとPCをUSB接続する。
 ### 2.2 通信設定(ポート、ボーレートなど)
-ポート：COM3(Silicon Labs CP210x USB to UART Bridgeが表示されるポート)<br>
-ボーレート：ESP-IDFにより自動設定されるため設定は不要。<br>
+ポート：COM3(Silicon Labs CP210x USB to UART Bridgeが表示されるポート)
+ボーレート：ESP-IDFにより自動設定されるため設定は不要。
 ### 2.3 動作確認
-サンプルプログラムをマイコンに書き込んで実行し、シリアルターミナルの出力を確認する。<br>
-次に手順を示す。<br>
+サンプルプログラムをマイコンに書き込んで実行し、シリアルターミナルの出力を確認する。
+次に手順を示す。
 1. `ctrl + shift + P`コマンドでコマンドパレットを開く。<br>
 
 1. コマンドパレットに`ESP-IDF: New Project`を入力し、赤枠で囲んだ`ESP-IDF: New Project`を押下する。<br>
