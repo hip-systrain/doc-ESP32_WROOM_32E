@@ -43,8 +43,7 @@
 それにより、ESP32-WROOM-32Eを用いたFreeRTOS有りの組み込み開発ができるようになる。
 
 ### 0.2 必要な機材
-必要な機材を次の表に示す。
-#### 表1.必要機材一覧
+
 | 品名 | 数量 | 備考 |
 |---|---|---|
 | ESP32-DevKitC V4 (ESP32-WROOM-32E) | 1人1台 | 開発するボード本体 |
@@ -116,7 +115,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 <img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br><br>
 
 > 確認: 「完了」の画面が出れば成功<br>
-<img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br><br>
+<img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br>
 
 #### ESP-IDF Extension インストール手順
 1. 画像の①からVSCodeの拡張機能を開く。<br>
@@ -151,8 +150,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 <img src="./images/E1_ESP-IDF_install5.png" width="300" height="" alt="Wait_Installation"><br><br>
 
 > 確認: インストール完了画面が出れば成功<br>
-<img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br><br>
-
+<img src="./images/E1_ESP-IDF_install6.png" width="300" height="" alt="Complete_Installation"><br>
 
 ### 1.2 ドライバのインストール
 #### CP210x Windows Drivers インストール手順
@@ -169,7 +167,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 <img src="./images/E1_CP210xDrivers_install3.png" width="300" height="" alt="Driver_Installation3"><br><br>
 
 > 確認: 完了画面が表示されれば成功<br>
-<img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br><br>
+<img src="./images/E1_CP210xDrivers_install4.png" width="300" height="" alt="Driver_Installation4"><br>
 
 
 ### 1.3 インストールできたことの確認
@@ -226,7 +224,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 > 確認: ビルドと書き込みを待ち、ターミナルに`Hello world!`が出力されれば成功<br>
 > 注意: このとき自動でプログラムがリスタートされ続けるが、期待通りの挙動<br>
-<img src="./images/E1_ESP-IDF_hello10.png" width="500" height="" alt="hello10"><br><br>
+<img src="./images/E1_ESP-IDF_hello10.png" width="500" height="" alt="hello10"><br>
 
 ## 3. プロジェクト作成
 本章は新規プロジェクトの作成と、プロジェクトの構成について説明する。
@@ -252,7 +250,7 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 1. 「New Project」タブ内で画面が更新されたら、「Open Project」を押下する。<br>
 > 確認: プロジェクトが開けば成功<br>
-<img src="./images/E1_3.6.png" width="500" height="" alt="setting6"><br><br>
+<img src="./images/E1_3.6.png" width="500" height="" alt="setting6"><br>
 
 ### 3.2 プロジェクトの構成(フォルダ・ファイルの役割)
 プロジェクト構成は次に示す。<br>
