@@ -57,15 +57,15 @@
 ### 0.3 前提知識・事前準備
 <!-- 既存の Git/GitHub 運用・Redmine 運用を参考に、前提とする知識と準備を書く -->
 #### 開発の前提条件
-　開発にあたって次に示す内容を確認しておくこと。
+開発にあたって次に示す内容を確認しておくこと。
 - 開発は[技術資料](http://hst-saba:3000/675802efc7569e701fb1c2ee)に記載された手順に沿って進める。  
 - ツールやドライバのバージョンはメンバー間で統一する。 (本手順書に記載のバージョンと一致させる必要はない)
 
 #### 開発対象マイコンの概要
-　ESP32-WROOM-32Eとは
-　Espressif Systems社の、Wi-Fi・Bluetooth通信機能を内蔵したIoT向けマイコンモジュール。  
-　デュアルコアCPUを搭載しており、GPIOやUART、SPI、I2Cなどの豊富な周辺機能を利用できる。  
-　FreeRTOSを利用したマルチタスク処理に対応しており、センサー制御や無線通信など、さまざまな組み込みシステムの開発に使用される。  
+ESP32-WROOM-32Eとは
+Espressif Systems社の、Wi-Fi・Bluetooth通信機能を内蔵したIoT向けマイコンモジュール。  
+デュアルコアCPUを搭載しており、GPIOやUART、SPI、I2Cなどの豊富な周辺機能を利用できる。  
+FreeRTOSを利用したマルチタスク処理に対応しており、センサー制御や無線通信など、さまざまな組み込みシステムの開発に使用される。  
 
 #### 用語解説
 - マイコン  
@@ -93,29 +93,29 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 
 ### 1.1 ツールのインストール
 #### VS Code インストール手順
-1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。<br>
+1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。
 <img src="./images/E1_vscode_download.png" width="300" height="" alt="VSCodeインストーラ_ダウンロード手順"><br><br>
 
-1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。<br>
-1. 「同意する」にチェックを入れて「次へ」を押下する。<br>
+1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。
+1. 「同意する」にチェックを入れて「次へ」を押下する。
 <img src="./images/E1_vscode_install.png" width="300" height="" alt="VSCode_インストール手順1"><br><br>
 
-1. インストール先を指定して「次へ」を押下する。<br>
+1. インストール先を指定して「次へ」を押下する。
 <img src="./images/E1_vscode_install2.png" width="300" height="" alt="VSCode_インストール手順2"><br><br>
 
-1. 「次へ」を押下する。<br>
+1. 「次へ」を押下する。
 <img src="./images/E1_vscode_install3.png" width="300" height="" alt="VSCode_インストール手順3"><br><br>
 
-1. 「次へ」を押下する。<br>
+1. 「次へ」を押下する。
 <img src="./images/E1_vscode_install4.png" width="300" height="" alt="VSCode_インストール手順4"><br><br>
 
-1. 「次へ」を押下する。<br>
+1. 「次へ」を押下する。
 <img src="./images/E1_vscode_install5.png" width="300" height="" alt="VSCode_インストール手順5"><br><br>
 
-1. 「インストール」を押下する。<br>
+1. 「インストール」を押下する。
 <img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br><br>
 
-> 確認: 「完了」の画面が出れば成功<br>
+> 確認: 「完了」の画面が出れば成功
 <img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br>
 
 #### ESP-IDF Extension インストール手順
