@@ -96,32 +96,32 @@ ESP32では、専用のJTAGデバッガ(例：ESP-PROG)を接続することで�
 1. VSCode公式の[ダウンロードページ](https://code.visualstudio.com/download)へアクセスし、Windows向けインストーラをダウンロードする。
 <img src="./images/E1_vscode_download.png" width="300" height="" alt="VSCodeインストーラ_ダウンロード手順"><br><br>
 
-1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。
-1. 「同意する」にチェックを入れて「次へ」を押下する。
+1. ダウンロードしたインストーラ`VSCodeUserSetup-x64-1.147`を実行する。<br>
+1. 「同意する」にチェックを入れて「次へ」を押下する。<br>
 <img src="./images/E1_vscode_install.png" width="300" height="" alt="VSCode_インストール手順1"><br><br>
 
-1. インストール先を指定して「次へ」を押下する。
+1. インストール先を指定して「次へ」を押下する。<br>
 <img src="./images/E1_vscode_install2.png" width="300" height="" alt="VSCode_インストール手順2"><br><br>
 
-1. 「次へ」を押下する。
+1. 「次へ」を押下する。<br>
 <img src="./images/E1_vscode_install3.png" width="300" height="" alt="VSCode_インストール手順3"><br><br>
 
-1. 「次へ」を押下する。
+1. 「次へ」を押下する。<br>
 <img src="./images/E1_vscode_install4.png" width="300" height="" alt="VSCode_インストール手順4"><br><br>
 
-1. 「次へ」を押下する。
+1. 「次へ」を押下する。<br>
 <img src="./images/E1_vscode_install5.png" width="300" height="" alt="VSCode_インストール手順5"><br><br>
 
-1. 「インストール」を押下する。
+1. 「インストール」を押下する。<br>
 <img src="./images/E1_vscode_install6.png" width="300" height="" alt="VSCode_インストール手順6"><br><br>
 
-> 確認: 「完了」の画面が出れば成功
+> 確認: 「完了」の画面が出れば成功<br>
 <img src="./images/E1_vscode_install7.png" width="300" height="" alt="VSCode_インストール手順7"><br>
 
 #### ESP-IDF Extension インストール手順
-1. 画像の①からVSCodeの拡張機能を開く。<br>
-1. 画像の②にESP-IDFと入力し検索する。<br>
-1. 画像の③を押下してESP-IDFのインストールページを開く。<br>
+1. 画像の①からVSCodeの拡張機能を開く。
+1. 画像の②にESP-IDFと入力し検索する。
+1. 画像の③を押下してESP-IDFのインストールページを開く。
 <img src="./images/E1_ESP-IDFex_install.png" width="300" height="" alt="ESP-IDF_Extension_インストール手順1"><br><br>
 
 1. Installボタンを押下してインストールする。<br>
